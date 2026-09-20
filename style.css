@@ -1,0 +1,299 @@
+/* ========== токены ========== */
+:root {
+  --night-1: #1E0F2E;
+  --night-2: #3A1749;
+  --night-3: #5E2154;
+  --cream: #FFF1DC;
+  --gold: #F6B83D;
+  --gold-soft: #FFD98E;
+  --rose: #FF5C7A;
+  --rose-soft: #FF8FA3;
+  --font-display: "Unbounded", sans-serif;
+  --font-script: "Marck Script", cursive;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--night-1);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(180deg, var(--night-1) 0%, var(--night-2) 58%, var(--night-3) 100%);
+  color: var(--cream);
+  font-family: var(--font-display);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* тёплое пятно света над сценой */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(62% 46% at 50% 30%, rgba(246, 184, 61, 0.10), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(120% 100% at 50% 44%, transparent 55%, rgba(8, 3, 16, 0.55) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ========== сцена ========== */
+.card {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.25rem;
+}
+
+/* ========== герой: Z + строка ========== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 84vmin;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(246, 184, 61, 0.30), rgba(255, 92, 122, 0.12) 58%, transparent 74%);
+  filter: blur(12px);
+  z-index: 0;
+  animation: glowIn 1.8s var(--ease-out) 0.1s both;
+}
+
+.hero-z {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(6.5rem, 24vw, 16rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  background: linear-gradient(168deg, var(--gold-soft) 0%, var(--gold) 42%, var(--rose-soft) 74%, var(--rose) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 10px 46px rgba(246, 184, 61, 0.30));
+  animation: bloom 1.1s var(--ease-out) 0.15s both;
+}
+
+.hero-line {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(0.6rem, 2.2vh, 1.3rem);
+  font-size: clamp(1.05rem, 4.4vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: var(--cream);
+  text-shadow: 0 2px 24px rgba(30, 15, 46, 0.6);
+  animation: riseUp 0.9s var(--ease-out) 0.5s both;
+}
+
+.hero-line::after {
+  content: "·";
+  display: block;
+  margin-top: clamp(0.8rem, 2.6vh, 1.5rem);
+  font-size: 1.6em;
+  line-height: 0;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(246, 184, 61, 0.7);
+}
+
+/* ========== сердце ========== */
+.heart {
+  position: relative;
+  margin-top: clamp(1.4rem, 5vh, 2.6rem);
+  width: clamp(6.5rem, 21vw, 9.5rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  animation: heartIn 0.8s var(--ease-out) 0.85s both;
+}
+
+.heart:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 10px;
+}
+
+.heart-shape {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(255, 92, 122, 0.55));
+  transform-origin: center;
+  animation: beat 1.5s ease-in-out 1.7s infinite;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.heart:hover .heart-shape,
+.heart:active .heart-shape {
+  transform: scale(1.08);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: ring 2.7s ease-out 1.7s infinite;
+}
+
+.ring--2 { animation-delay: 1.6s; }
+.ring--3 { animation-delay: 2.15s; }
+
+/* подпись */
+.sign {
+  margin-top: clamp(1rem, 3.4vh, 1.8rem);
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 4.6vw, 2.2rem);
+  color: var(--gold-soft);
+  animation: fadeIn 1s ease-out 1.4s both;
+}
+
+/* ========== атмосфера: звёзды и сердечки ========== */
+.star {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: var(--cream);
+  opacity: 0;
+  animation: twinkle var(--dur) ease-in-out var(--delay) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.float-heart {
+  position: fixed;
+  bottom: -6vh;
+  left: var(--x);
+  font-size: var(--s);
+  color: var(--c);
+  opacity: 0;
+  animation: rise var(--dur) ease-in var(--delay) infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========== салют ========== */
+.confetti-piece {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.confetti-heart {
+  font-size: var(--s);
+  color: var(--c);
+  line-height: 1;
+}
+
+.confetti-dot {
+  width: var(--s);
+  height: var(--s);
+  margin-top: calc(var(--s) / -2);
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.confetti-strip {
+  width: 9px;
+  height: 16px;
+  margin-top: -8px;
+  background: var(--c);
+  border-radius: 2px;
+}
+
+/* ========== анимации ========== */
+@keyframes glowIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bloom {
+  from { opacity: 0; transform: scale(0.82) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(18px); letter-spacing: 0.5em; }
+  to   { opacity: 1; transform: translateY(0); letter-spacing: 0.32em; }
+}
+
+@keyframes heartIn {
+  from { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  14%      { transform: scale(1.16); }
+  28%      { transform: scale(1); }
+  42%      { transform: scale(1.12); }
+  56%      { transform: scale(1); }
+}
+
+@keyframes ring {
+  0%   { transform: scale(0.75); opacity: 0.5; }
+  100% { transform: scale(2.15); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: var(--o); }
+}
+
+@keyframes rise {
+  0%   { transform: translate3d(0, 0, 0) rotate(-10deg); opacity: 0; }
+  6%   { opacity: var(--o); }
+  90%  { opacity: var(--o); }
+  100% { transform: translate3d(var(--drift), -118vh, 0) rotate(9deg); opacity: 0; }
+}
+
+/* ========== доступность ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .star, .float-heart { display: none; }
+}

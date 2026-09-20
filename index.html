@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Z — с днём рождения!</title>
+  <meta name="description" content="День рождения — повод для салюта из сердечек. Открытка с любовью.">
+  <meta name="theme-color" content="#1E0F2E">
+  <meta property="og:title" content="Z — с днём рождения!">
+  <meta property="og:description" content="Открытка с любовью. Нажми на сердечко — загадай желание.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Unbounded:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="card">
+    <h1 class="hero">
+      <span class="hero-glow" aria-hidden="true"></span>
+      <span class="hero-z">Z</span>
+      <span class="hero-line">ДНЕМ&nbsp;РОЖДЕНИЯ</span>
+    </h1>
+
+    <div class="heart" role="button" tabindex="0" aria-label="Нажми на сердечко — загадай желание">
+      <svg class="heart-shape" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FF8FA3"/>
+            <stop offset="55%" stop-color="#FF5C7A"/>
+            <stop offset="100%" stop-color="#E63C5E"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#heartGrad)" d="M50 88 C 20 60, 6 44, 6 28 C 6 16, 16 8, 28 8 C 38 8, 46 14, 50 22 C 54 14, 62 8, 72 8 C 84 8, 94 16, 94 28 C 94 44, 80 60, 50 88 Z"/>
+      </svg>
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="none" stroke="#FF5C7A" stroke-width="2.5" d="M50 88 C 20 60, 6 44, 6 28 C 6 16, 16 8, 28 8 C 38 8, 46 14, 50 22 C 54 14, 62 8, 72 8 C 84 8, 94 16, 94 28 C 94 44, 80 60, 50 88 Z"/>
+      </svg>
+      <svg class="ring ring--2" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="none" stroke="#F6B83D" stroke-width="2" d="M50 88 C 20 60, 6 44, 6 28 C 6 16, 16 8, 28 8 C 38 8, 46 14, 50 22 C 54 14, 62 8, 72 8 C 84 8, 94 16, 94 28 C 94 44, 80 60, 50 88 Z"/>
+      </svg>
+      <svg class="ring ring--3" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="none" stroke="#FF8FA3" stroke-width="1.8" d="M50 88 C 20 60, 6 44, 6 28 C 6 16, 16 8, 28 8 C 38 8, 46 14, 50 22 C 54 14, 62 8, 72 8 C 84 8, 94 16, 94 28 C 94 44, 80 60, 50 88 Z"/>
+      </svg>
+    </div>
+
+    <p class="sign">с&nbsp;любовью</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
